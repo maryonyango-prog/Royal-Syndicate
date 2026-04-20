@@ -83,6 +83,48 @@ class Player():
         self.bet=raise_amount
         #self.amount=self.amount=raise_amount
         return raise_amount
+    
+    
+    
+    def auto_call_raise(self,player,k):
+      
+        print("Pc thinking.What to do")
+        human=player
+        time.sleep(2)
+        to_do=random.randint(1,2)
+
+        print("Human Bet ",human.bet)
+        print("PC bet is  ",self.bet)
+        
+        ## 200 ,100 ->100
+        ## human: 100 pc 50 50-100
+        diff=human.bet-self.bet
+        print("Diff is ",diff)
+
+        if diff<0:
+            print("I Call your bet")
+            return
+        
+        if diff>self.amount:
+            print("I fold. Bet too high")
+            return "l"
+        
+                #raise:
+        raise_amount=random.randint(1,30)
+        raise_stake=diff+raise_amount
+
+        if raise_stake>self.amount or k>=3:
+            to_do=1
+
+        #Match the bet
+        if to_do==1:
+            self.bet=diff
+            print(f"I call your bet. I bet ",diff)
+            return
+        
+        self.bet=raise_stake
+        print(f"I see your action. I raise you by {raise_amount} ")
+
         
     
 

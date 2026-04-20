@@ -36,14 +36,26 @@ def play_game():
             break
         k=k+1
 
+        human_choice=human.call_fold_raise(player=pc)
+
+        if human_choice=="l":
+            print("PC WON THE GAME")
+            return
+
+        print("-----------------------")
         print("Human amount",human.amount)
         print("Human bet amount",human.bet)
 
-        human.call_fold_raise(player=pc)
-        #pc.auto_call_fold_raise
-       
+        pc_choice=pc.auto_call_raise(player=human,k=k)
 
+        if pc_choice=="l":
+            print("HUMAN WON THE GAME")
+            return
         
+        
+        print("PC amount",pc.amount)
+        print("PC bet amount",pc.bet)
+        print("-----------------------")
 
 play_game()
 
